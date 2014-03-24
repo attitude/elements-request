@@ -31,13 +31,13 @@ class Request_Element
     private function setRequestMethod($dependency)
     {
         if (!is_string($dependency)) {
-            throw new HTTPException('Request method must be a string.');
+            throw new HTTPException(400, 'Request method must be a string.');
         }
 
         $valid_methods = array('GET', 'POST', 'PUT', 'DELETE');
 
         if (!in_array($dependency, $valid_methods)) {
-            throw new HTTPException('Method must be one of the '.implode(', ', $valid_methods).' methods.');
+            throw new HTTPException(400, 'Method must be one of the '.implode(', ', $valid_methods).' methods.');
         }
 
         $this->request_method = $dependency;
@@ -48,7 +48,7 @@ class Request_Element
     private function setRequestURI($dependency)
     {
         if (!is_string($dependency) && !is_array($dependency)) {
-            throw new HTTPException('Request URI must be a string or array.');
+            throw new HTTPException(400, 'Request URI must be a string or array.');
         }
 
         if (is_string($dependency)) {
@@ -63,7 +63,7 @@ class Request_Element
     private function setAccept($dependency)
     {
         if (!is_string($dependency)) {
-            throw new HTTPException('Accept header must be a string.');
+            throw new HTTPException(406, 'Accept header must be a string.');
         }
 
         $this->accept = explode(',', str_replace(' ', '', $dependency));
