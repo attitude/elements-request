@@ -93,7 +93,12 @@ class Request_Element
 
     public function getLocation()
     {
-        return 'http'. ($_SERVER['SCHEME']==='HTTPS' ? 's' : '').'://'.$_SERVER['HTTP_HOST'].$this->getRequestURI();
+        return $this->getHostLocation().$this->getRequestURI();
+    }
+
+    public function getHostLocation()
+    {
+        return 'http'. ($_SERVER['SCHEME']==='HTTPS' ? 's' : '').'://'.$_SERVER['HTTP_HOST'];
     }
 
     public function getSearchQuery($key=null)
