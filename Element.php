@@ -98,7 +98,7 @@ class Request_Element
 
     public function getHostLocation()
     {
-        return 'http'. ($_SERVER['SCHEME']==='HTTPS' ? 's' : '').'://'.$_SERVER['HTTP_HOST'];
+        return 'http'. ($_SERVER['SCHEME']==='HTTPS' ? 's' : '').'://'.$_SERVER['HTTP_HOST'].(isset($_SERVER['REQUEST_ENDPOINT']) ? '/'.trim($_SERVER['REQUEST_ENDPOINT'], '/') : '');
     }
 
     public function getSearchQuery($key=null)
